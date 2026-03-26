@@ -335,8 +335,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 7.4.2
-   * Query Engine version: 94a226be1cf2967af2541cca5529f0f7ba866919
+   * Prisma Client JS version: 7.5.0
+   * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
    */
   export type PrismaVersion = {
     client: string
@@ -2568,6 +2568,11 @@ export namespace Prisma {
      * Skip the first `n` Users.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
@@ -3831,6 +3836,11 @@ export namespace Prisma {
      * Skip the first `n` Products.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Products.
+     */
     distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
   }
 
@@ -5080,6 +5090,11 @@ export namespace Prisma {
      * Skip the first `n` Orders.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Orders.
+     */
     distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
   }
 
@@ -6195,6 +6210,11 @@ export namespace Prisma {
      * Skip the first `n` OrderItems.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderItems.
+     */
     distinct?: OrderItemScalarFieldEnum | OrderItemScalarFieldEnum[]
   }
 
@@ -7334,6 +7354,11 @@ export namespace Prisma {
      * Skip the first `n` Ratings.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Ratings.
+     */
     distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
   }
 
@@ -8476,6 +8501,11 @@ export namespace Prisma {
      * Skip the first `n` Addresses.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Addresses.
+     */
     distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
   }
 
@@ -9596,6 +9626,11 @@ export namespace Prisma {
      * Skip the first `n` Coupons.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Coupons.
+     */
     distinct?: CouponScalarFieldEnum | CouponScalarFieldEnum[]
   }
 
@@ -10740,6 +10775,11 @@ export namespace Prisma {
      * Skip the first `n` Stores.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Stores.
+     */
     distinct?: StoreScalarFieldEnum | StoreScalarFieldEnum[]
   }
 

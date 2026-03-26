@@ -39,12 +39,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 7.4.2
- * Query Engine version: 94a226be1cf2967af2541cca5529f0f7ba866919
+ * Prisma Client JS version: 7.5.0
+ * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
  */
 Prisma.prismaVersion = {
-  client: "7.4.2",
-  engine: "94a226be1cf2967af2541cca5529f0f7ba866919"
+  client: "7.5.0",
+  engine: "280c870be64f457428992c43c1f6d557fab6e29e"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -235,8 +235,8 @@ exports.Prisma.ModelName = {
  */
 const config = {
   "previewFeatures": [],
-  "clientVersion": "7.4.2",
-  "engineVersion": "94a226be1cf2967af2541cca5529f0f7ba866919",
+  "clientVersion": "7.5.0",
+  "engineVersion": "280c870be64f457428992c43c1f6d557fab6e29e",
   "activeProvider": "postgresql",
   "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n\n  output = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n// Required for creating a User: id, name, email, image, cart (optional JSON string)\nmodel User {\n  id    String @id\n  name  String\n  email String\n  image String\n  cart  Json   @default(\"{}\")\n\n  // Relations\n  ratings     Rating[]\n  Address     Address[]\n  store       Store?\n  buyerOrders Order[]   @relation(\"BuyerRelation\")\n}\n\n// Required for creating a Product: name, description, mrp, price, images, category, storeId\nmodel Product {\n  id          String   @id @default(cuid())\n  name        String\n  description String\n  mrp         Float\n  price       Float\n  images      String[]\n  category    String\n  inStock     Boolean  @default(true)\n  storeId     String\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relations\n  store      Store       @relation(fields: [storeId], references: [id], onDelete: Cascade)\n  orderItems OrderItem[]\n  rating     Rating[]\n}\n\nenum OrderStatus {\n  ORDER_PLACED\n  PROCESSING\n  SHIPPED\n  DELIVERED\n}\n\nenum PaymentMethod {\n  COD\n  STRIPE\n}\n\n// Required for creating an Order: total, userId, storeId, addressId, isPaid, paymentMethod, isCouponUsed, coupon (JSON), orderItems (nested)\nmodel Order {\n  id            String        @id @default(cuid())\n  total         Float\n  status        OrderStatus   @default(ORDER_PLACED)\n  userId        String\n  storeId       String\n  addressId     String\n  isPaid        Boolean       @default(false)\n  paymentMethod PaymentMethod\n  createdAt     DateTime      @default(now())\n  updatedAt     DateTime      @updatedAt\n  isCouponUsed  Boolean       @default(false)\n  coupon        Json          @default(\"{}\")\n  orderItems    OrderItem[]\n\n  // Relations\n  user    User    @relation(\"BuyerRelation\", fields: [userId], references: [id])\n  store   Store   @relation(fields: [storeId], references: [id])\n  address Address @relation(fields: [addressId], references: [id])\n}\n\n// Required for creating an OrderItem: orderId, productId, quantity, price\nmodel OrderItem {\n  orderId   String\n  productId String\n  quantity  Int\n  price     Float\n\n  // Relations\n  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)\n  product Product @relation(fields: [productId], references: [id])\n\n  @@id([orderId, productId])\n}\n\n// Required for creating a Rating: rating, review, userId, productId\nmodel Rating {\n  id        String   @id @default(cuid())\n  rating    Int\n  review    String\n  userId    String\n  productId String\n  orderId   String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  // Relations\n  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)\n  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)\n\n  @@unique([userId, productId, orderId])\n}\n\n// Required for creating an Address: userId, name, email, street, city, state, zip, country, phone\nmodel Address {\n  id        String   @id @default(cuid())\n  userId    String\n  name      String\n  email     String\n  street    String\n  city      String\n  state     String\n  zip       String\n  country   String\n  phone     String\n  createdAt DateTime @default(now())\n\n  // Relations\n  Order Order[]\n  user  User    @relation(fields: [userId], references: [id], onDelete: Cascade)\n}\n\n// Required for creating a Coupon: code, description, discount, forNewUser, isPublic, expiresAt\nmodel Coupon {\n  code        String   @id\n  description String\n  discount    Float\n  forNewUser  Boolean\n  forMember   Boolean  @default(false)\n  isPublic    Boolean\n  expiresAt   DateTime\n  createdAt   DateTime @default(now())\n}\n\n// Required for creating a Store: userId, name, username, email, contact, logo, description, address (optional: , status, isActive)\nmodel Store {\n  id          String   @id @default(cuid())\n  userId      String   @unique\n  name        String\n  description String\n  username    String   @unique\n  address     String\n  status      String   @default(\"pending\")\n  isActive    Boolean  @default(false)\n  logo        String\n  email       String\n  contact     String\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  Product Product[]\n  Order   Order[]\n  user    User      @relation(fields: [userId], references: [id])\n}\n"
 }
